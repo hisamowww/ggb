@@ -1,15 +1,11 @@
-#
-# Build stage
-#
-FROM maven:3.8.2-jdk-17 AS build
+FROM ubuntu:latest AS build
+RUN apt-get update
+RUN apt-get install openjdk-17-jdk -y
 COPY . .
-RUN mvn clean package -DskipTests
+RUN ./mvnw bootJar --no-daemon
 
-#
-# Package stage
-#
 FROM openjdk:17-jdk-slim
-COPY --from=build /target/ggb-0.0.1-SNAPSHOT.jar ggb.jar
-# ENV PORT=8080
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","ggb.jar"]
+COPY --from-build /build/libs/ggb-0.0.1-SNAPSHOT.jar ggb.jar
+
+ENTRYPOINT ["java", "jar", "ggb.jar"]
