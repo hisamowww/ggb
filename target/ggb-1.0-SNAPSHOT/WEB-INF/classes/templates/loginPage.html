@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ООО "Газпром газобезопасность"</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+
+<header th:insert="blocks/header :: header"></header>
+
+<body>
+<div class="container text-center mx-auto mt-auto m-md-auto m-sm-auto">
+
+<!--    <body>
+    <h1>Авторизация</h1>
+    <div th:if="${param.error}">
+        Неверный пароль.</div>
+    <div th:if="${param.logout}">
+        Вход выполнен.</div>
+    <form th:action="@{/loginPage}" method="post">
+        <div>
+            <input type="text" name="email" placeholder="email"/>
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="Password"/>
+        </div>
+        <input type="submit" value="Вход" />
+    </form>
+    </body>-->
+
+<!--    <h4>Авторизация</h4>
+    <form action="/login" method="post">
+        Эл. почта: <input type="email" name="username"><br><br>
+        Пароль: <input type="password" name="password"><br><br>
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="submit" value="Вход"/>
+    </form>
+    <a href="/registration">Зарегистрироваться</a>-->
+    <form>
+        <div class="form-group text-center">
+            <label for="exampleInputEmail1">Логин</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted"></small>
+        </div>
+        <div class="form-group text-center">
+            <label for="exampleInputPassword1">Пароль</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <button type="submit" class="btn btn-primary">Войти</button>
+    </form>
+</div>
+
+</body>
+</html>

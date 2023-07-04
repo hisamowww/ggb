@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ООО "Газпром газобезопасность"</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<title>Организации</title>
+</head>
+<header th:insert="blocks/header :: header"></header>
+<body>
+<div class="container text-center">
+  <div>
+    <a class="h4" th:href="@{/library/orgs/new}">Добавить организацию</a>
+  </div>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+
+            <th>Наименование организации</th>
+            <th>Адрес организации</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        <th:block th:each="org : ${listOrgs}">
+            <tr>
+
+                <td>[[${org.name}]]</td>
+                <td>[[${org.address}]]</td>
+                <td>
+                    <a th:href="@{'/library/orgs/edit/' + ${org.id}}">Редактировать</a>
+                    &nbsp;
+                    <a th:href="@{'/library/orgs/delete/' + ${org.id}}">Удалить</a>
+                </td>
+            </tr>
+        </th:block>
+    </tbody>
+</table>
+
+</div>
+</body>
+</html>

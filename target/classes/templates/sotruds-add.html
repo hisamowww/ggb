@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ООО "Газпром газобезопасность"</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<title>Добавить сотрудника</title>
+</head>
+<header th:insert="blocks/header :: header"></header>
+<body>
+<div class="container text-center">
+
+    <div th:if="${sotrud.id}==null" ><h1>Добавление должности</h1></div>
+    <div th:unless="${sotrud.id}==null" ><h1>Редактировать сведения о должности</h1></div>
+    <form th:action="@{/library/sotruds/save}" th:object="${sotrud}" method="post" style="max-width: border-box; margin: auto">
+    <input type="hidden" th:value="${sotrud.id}" th:field="*{id}"/>
+      <div class="m-3">
+
+        <div class="form-group row">
+
+              <label class="col-form-label col-sm-4">Фамилия: </label>
+
+                <div class="col-sm-6">
+                  <input type="text" th:field="*{secondName}" class="form-control" required>
+                </div><br><br>
+
+            <label class="col-form-label col-sm-4">Имя: </label>
+
+            <div class="col-sm-6">
+                <input type="text" th:field="*{firstName}" class="form-control" required>
+            </div><br><br>
+
+            <label class="col-form-label col-sm-4">Отчество: </label>
+
+            <div class="col-sm-6">
+                <input type="text" th:field="*{lastName}" class="form-control" required>
+            </div><br><br>
+
+            <label class="col-form-label col-sm-4">Email: </label>
+
+            <div class="col-sm-6">
+                <input type="text" th:field="*{email}" class="form-control" required>
+            </div><br><br>
+
+          <label class="col-form-label col-sm-4">Организация: </label>
+
+          <div class="col-sm-8">
+              <select th:field="*{org}" class="form-control" required>
+                  <th:block th:each="org : ${listOrgs}">
+                      <option th:text="${org.name}" th:value="${org.id}" ></option>
+                  </th:block>
+              </select>
+          </div>
+            <label class="col-form-label col-sm-4">Филиал: </label>
+
+            <div class="col-sm-8">
+                <select th:field="*{filial}" class="form-control" required>
+                    <th:block th:each="filial : ${listFilials}">
+                        <option th:text="${filial.name}" th:value="${filial.id}" ></option>
+                    </th:block>
+                </select>
+            </div>
+            <label class="col-form-label col-sm-4">Подразделение: </label>
+
+            <div class="col-sm-8">
+                <select th:field="*{podrazd}" class="form-control" required>
+                    <th:block th:each="podrazd : ${listPodrazds}">
+                        <option th:text="${podrazd.name}" th:value="${podrazd.id}" ></option>
+                    </th:block>
+                </select>
+            </div>
+            <label class="col-form-label col-sm-4">Должность: </label>
+
+            <div class="col-sm-8">
+                <select th:field="*{post}" class="form-control" required>
+                    <th:block th:each="post : ${listPosts}">
+                        <option th:text="${post.name}" th:value="${post.id}" ></option>
+                    </th:block>
+                </select>
+            </div>
+      </div>
+
+      <div class="text-center p-3">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+      </div>
+    </form>
+</div>
+
+</div>
+</body>
+</html>

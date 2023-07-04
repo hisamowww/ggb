@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ООО "Газпром газобезопасность"</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<title>Профилактическая и оперативная работа</title>
+</head>
+<header th:insert="blocks/header :: header"></header>
+<body>
+<div class="container text-center">
+  <div>
+    <a class="h4" th:href="@{/library/profWorkDocs/new}">Добавить профилактическую/оперативную работу</a>
+  </div>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+
+            <th>Дата</th>
+            <th>Контрагент</th>
+            <th>Скважина (объект)</th>
+            <th>Договор</th>
+            <th>Выполняемая работа</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        <th:block th:each="profWorkDoc : ${listProfWorkDocs}">
+            <tr>
+
+                <td>[[${profWorkDoc.date}]]</td>
+                <td>[[${profWorkDoc.contragent.name}]]</td>
+                <td>[[${profWorkDoc.contragentObject.number}]]</td>
+                <td>[[${profWorkDoc.dogovor.numberFilial}]]</td>
+                <td>[[${profWorkDoc.work.name}]]</td>
+                <td>
+                    <a th:href="@{'/library/profWorkDocs/edit/' + ${profWorkDoc.id}}">Редактировать</a>
+                    &nbsp;
+                    <a th:href="@{'/library/profWorkDocs/delete/' + ${profWorkDoc.id}}">Удалить</a>
+                </td>
+            </tr>
+        </th:block>
+    </tbody>
+</table>
+
+</div>
+</body>
+</html>

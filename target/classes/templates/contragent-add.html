@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ООО "Газпром газобезопасность"</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<title>Добавить контрагента</title>
+</head>
+<header th:insert="blocks/header :: header"></header>
+<body>
+<div class="container text-center">
+
+    <div th:if="${contragent.id}==null" ><h1>Добавление контрагента</h1></div>
+    <div th:unless="${contragent.id}==null" ><h1>Редактирование</h1></div>
+    <form th:action="@{/library/contragents/save}" th:object="${contragent}" method="post" style="max-width: border-box; margin: auto">
+    <input type="hidden" th:value="${contragent.id}" th:field="*{id}"/>
+      <div class="m-3">
+
+        <div class="form-group row">
+
+              <label class="col-form-label col-sm-4">Наименование контрагента: </label>
+
+                <div class="col-sm-6">
+                  <input type="text" th:field="*{name}" class="form-control" required>
+                </div><br><br>
+
+            <label class="col-form-label col-sm-4">Адресс контрагента: </label>
+
+            <div class="col-sm-6">
+                <input type="text" th:field="*{address}" class="form-control" required>
+            </div><br><br>
+
+            <label class="col-form-label col-sm-4">Категория: </label>
+
+            <div class="col-sm-8">
+                <select th:field="*{contragentCategory}" class="form-control" required>
+                    <th:block th:each="contragentCategory : ${listContragentCategories}">
+                        <option th:text="${contragentCategory.name}" th:value="${contragentCategory.id}"></option>
+                    </th:block>
+                </select><br><br>
+
+        </div>
+
+      </div>
+
+      <div class="text-center p-3">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+      </div>
+    </form>
+</div>
+
+</div>
+</body>
+</html>

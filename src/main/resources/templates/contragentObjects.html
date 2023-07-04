@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ООО "Газпром газобезопасность"</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<title>Объекты (скважины и пр.)</title>
+</head>
+<header th:insert="blocks/header :: header"></header>
+<body>
+<div class="container text-center">
+  <div>
+    <a class="h4" th:href="@{/library/contragentObjects/new}">Добавить объект</a>
+  </div>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+
+            <th>Наименование объекта</th>
+            <th>Номер объекта</th>
+            <th>Месторождение</th>
+            <th>Организация-владелец</th>
+            <th>Завод изготовитель</th>
+            <th>Марка фонтанной арматуры</th>
+            <th>Год ввода в эксплуатацию</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        <th:block th:each="contragentObject : ${listContragentObjects}">
+            <tr>
+
+                <td>[[${contragentObject.name}]]</td>
+                <td>[[${contragentObject.number}]]</td>
+                <td>[[${contragentObject.mestorog.name}]]</td>
+                <td>[[${contragentObject.contragent.name}]]</td>
+                <td>[[${contragentObject.objectZavod}]]</td>
+                <td>[[${contragentObject.objectMarka}]]</td>
+                <td>[[${contragentObject.objectYear}]]</td>
+                <td>
+                    <a th:href="@{'/library/contragentObjects/edit/' + ${contragentObject.id}}">Редактировать</a>
+                    &nbsp;
+                    <a th:href="@{'/library/contragentObjects/delete/' + ${contragentObject.id}}">Удалить</a>
+                </td>
+            </tr>
+        </th:block>
+    </tbody>
+</table>
+
+</div>
+</body>
+</html>

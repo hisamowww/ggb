@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ООО "Газпром газобезопасность"</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<title>Добавить филиал</title>
+</head>
+<header th:insert="blocks/header :: header"></header>
+<body>
+<div class="container text-center">
+
+    <div th:if="${filial.id}==null" ><h1>Добавление филиала</h1></div>
+    <div th:unless="${filial.id}==null" ><h1>Редактировать сведения о филиале</h1></div>
+
+    <form th:action="@{/library/filials/save}" th:object="${filial}" method="post" style="max-width: border-box; margin: auto">
+      <input type="hidden" th:value="${filial.id}" th:field="*{id}"/>
+
+      <div class="m-3">
+
+        <div class="form-group row">
+
+              <label class="col-form-label col-sm-4">Наименование филиала: </label>
+
+                <div class="col-sm-6">
+                  <input type="text" th:field="*{name}" class="form-control" required>
+                </div><br><br>
+
+          <label class="col-form-label col-sm-4">Адрес филиала: </label>
+
+          <div class="col-sm-8">
+            <input type="text" th:field="*{address}" class="form-control" required>
+          </div>
+
+          <label class="col-form-label col-sm-4">Организация: </label>
+
+          <div class="col-sm-8">
+            <select th:field="*{org}" class="form-control" required>
+              <th:block th:each="org : ${listOrgs}">
+                <option th:text="${org.name}" th:value="${org.id}"></option>
+              </th:block>
+            </select>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="text-center p-3">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+      </div>
+    </form>
+</div>
+
+</div>
+</body>
+</html>

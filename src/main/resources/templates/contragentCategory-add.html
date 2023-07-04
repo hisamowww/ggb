@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ООО "Газпром газобезопасность"</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<title>Добавить категорию контрагентов</title>
+</head>
+<header th:insert="blocks/header :: header"></header>
+<body>
+<div class="container text-center">
+
+    <div th:if="${contragentCategory.id}==null" ><h1>Добавление категории контрагентов</h1></div>
+    <div th:unless="${contragentCategory.id}==null" ><h1>Редактирование</h1></div>
+    <form th:action="@{/library/contragentCategory/save}" th:object="${contragentCategory}" method="post" style="max-width: border-box; margin: auto">
+    <input type="hidden" th:value="${contragentCategory.id}" th:field="*{id}"/>
+      <div class="m-3">
+
+        <div class="form-group row">
+
+              <label class="col-form-label col-sm-4">Наименование категории: </label>
+
+                <div class="col-sm-6">
+                  <input type="text" th:field="*{name}" class="form-control" required>
+                </div><br><br>
+
+        </div>
+
+      </div>
+
+      <div class="text-center p-3">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+      </div>
+    </form>
+</div>
+
+</div>
+</body>
+</html>

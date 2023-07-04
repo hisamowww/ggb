@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ООО "Газпром газобезопасность"</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<title>Добавить выполнение работ</title>
+</head>
+<header th:insert="blocks/header :: header"></header>
+<body>
+<div class="container text-center">
+
+    <div th:if="${profWorkDoc.id}==null" ><h1>Добавление должности</h1></div>
+    <div th:unless="${profWorkDoc.id}==null" ><h1>Редактировать выполнение работ</h1></div>
+    <form th:action="@{/library/profWorkDocs/save}" th:object="${profWorkDoc}" method="post" style="max-width: border-box; margin: auto">
+    <input type="hidden" th:value="${profWorkDoc.id}" th:field="*{id}"/>
+      <div class="m-3">
+
+        <div class="form-group row">
+
+          <label class="col-form-label col-sm-4">Наименование работы: </label>
+          <div class="col-sm-8">
+              <select th:field="*{work}" class="form-control" required>
+                  <th:block th:each="work : ${listWorks}">
+                      <option th:text="${work.name}" th:value="${work.id}" ></option>
+                  </th:block>
+              </select>
+          </div>
+            <label class="col-form-label col-sm-4">Контрагент: </label>
+            <div class="col-sm-8">
+                <select th:field="*{contragent}" class="form-control" required>
+                    <th:block th:each="contragent : ${listContragents}">
+                        <option th:text="${contragent.name}" th:value="${contragent.id}" ></option>
+                    </th:block>
+                </select>
+            </div>
+            <label class="col-form-label col-sm-4">Скважина (объект): </label>
+            <div class="col-sm-8">
+                <select th:field="*{contragentObject}" class="form-control" required>
+                    <th:block th:each="contragentObject : ${listContragentObjects}">
+                        <option th:text="${contragentObject.number}" th:value="${contragentObject.id}" ></option>
+                    </th:block>
+                </select>
+            </div>
+            <label class="col-form-label col-sm-4">Договор: </label>
+            <div class="col-sm-8">
+                <select th:field="*{dogovor}" class="form-control" required>
+                    <th:block th:each="dogovor : ${listDogovors}">
+                        <option th:text="${dogovor.numberFilial}" th:value="${dogovor.id}" ></option>
+                    </th:block>
+                </select>
+            </div>
+            <label class="col-form-label col-sm-4">Дата документа: </label>
+            <div class="col-sm-6">
+                <input type="text" th:field="*{date}" class="form-control" required>
+            </div><br><br>
+            <label class="col-form-label col-sm-4">Номер документа: </label>
+            <div class="col-sm-6">
+                <input type="text" th:field="*{number}" class="form-control" required>
+            </div><br><br>
+            <label class="col-form-label col-sm-4">Состав группы: </label>
+            <div class="col-sm-8">
+                <select th:field="*{sotrud}" class="form-control"  aria-multiselectable="true" multiple="multiple" required>
+                    <th:block th:each="sotrud : ${listSotruds}">
+                        <option th:text="${sotrud.secondName}" th:value="${sotrud.id}" ></option>
+                    </th:block>
+                </select>
+            </div>
+      </div>
+
+      <div class="text-center p-3">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+      </div>
+    </form>
+</div>
+
+</div>
+</body>
+</html>

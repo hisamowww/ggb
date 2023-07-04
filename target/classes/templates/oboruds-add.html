@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ООО "Газпром газобезопасность"</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<title>Добавить оборудование</title>
+</head>
+<header th:insert="blocks/header :: header"></header>
+<body>
+<div class="container text-center">
+
+    <div th:if="${oborud.id}==null" ><h1>Добавление организации</h1></div>
+    <div th:unless="${oborud.id}==null" ><h1>Редактировать сведения об организации</h1></div>
+    <form th:action="@{/library/oboruds/save}" th:object="${oborud}" method="post" style="max-width: border-box; margin: auto">
+    <input type="hidden" th:value="${oborud.id}" th:field="*{id}"/>
+      <div class="m-3">
+
+        <div class="form-group row">
+
+              <label class="col-form-label col-sm-4">Наименование оборудование: </label>
+
+                <div class="col-sm-6">
+                  <input type="text" th:field="*{name}" class="form-control" required>
+                </div><br><br>
+
+          <label class="col-form-label col-sm-4">Шифр оборудования: </label>
+
+          <div class="col-sm-8">
+            <input type="text" th:field="*{shifr}" class="form-control" required>
+          </div>
+            <label class="col-form-label col-sm-4">Номер оборудования: </label>
+
+            <div class="col-sm-8">
+                <input type="text" th:field="*{number}" class="form-control" required>
+            </div>
+            <label class="col-form-label col-sm-4">Комплект оборудования: </label>
+
+            <div class="col-sm-8">
+                <input type="text" th:field="*{komplect}" class="form-control" required>
+            </div>
+            <label class="col-form-label col-sm-4">Заводской номер оборудования: </label>
+
+            <div class="col-sm-8">
+                <input type="text" th:field="*{zavodNumb}" class="form-control" required>
+            </div>
+            <label class="col-form-label col-sm-4">Дата изготовления оборудования: </label>
+
+            <div class="col-sm-8">
+                <input type="text" th:field="*{dateFirst}" class="form-control" required>
+            </div>
+            <label class="col-form-label col-sm-4">Срок службы оборудования, лет: </label>
+
+            <div class="col-sm-8">
+                <input type="text" th:field="*{srok}" class="form-control" required>
+            </div>
+
+            <label class="col-form-label col-sm-4">Паспорт оборудования: </label>
+
+            <div class="col-sm-8">
+                <input type="text" th:field="*{passport}" class="form-control" required>
+            </div>
+        </div>
+
+
+      </div>
+
+      <div class="text-center p-3">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+      </div>
+    </form>
+</div>
+
+</div>
+</body>
+</html>

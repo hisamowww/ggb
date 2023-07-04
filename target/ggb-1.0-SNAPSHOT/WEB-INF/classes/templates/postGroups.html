@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ООО "Газпром газобезопасность"</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<title>Категории должностей</title>
+</head>
+<header th:insert="blocks/header :: header"></header>
+<body>
+<div class="container text-center">
+  <div>
+    <a class="h4" th:href="@{/library/postGroups/new}">Добавить категорию должности</a>
+  </div>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+
+            <th>Наименование категории</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        <th:block th:each="postGroup : ${listPostGroups}">
+            <tr>
+
+                <td>[[${postGroup.name}]]</td>
+                <td>
+                    <a th:href="@{'/library/postGroups/edit/' + ${postGroup.id}}">Редактировать</a>
+                    &nbsp;
+                    <a th:href="@{'/library/postGroups/delete/' + ${postGroup.id}}">Удалить</a>
+                </td>
+            </tr>
+        </th:block>
+    </tbody>
+</table>
+
+</div>
+</body>
+</html>

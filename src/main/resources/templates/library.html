@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ООО "Газпром газобезопасность"</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<title>Справочники</title>
+</head>
+<header th:insert="blocks/header :: header"></header>
+<body>
+<div class="container text-center">
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/orgs}">Организации</a>
+  </div>
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/filials}">Филиалы</a>
+  </div>
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/podrazds}">Подразделения</a>
+  </div>
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/posts}">Должности</a>
+  </div>
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/postGroups}">Категории должностей</a>
+  </div>
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/sotruds}">Сотрудники</a>
+  </div>
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/contragentCategory}">Категории контрагентов</a>
+  </div>
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/mestorog}">Месторождения</a>
+  </div>
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/contragents}">Контрагенты</a>
+  </div>
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/contragentObjects}">Объекты (скважины, и пр.)</a>
+  </div>
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/oboruds}">Оборудования и приспособления</a>
+  </div>
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/works}">Реестр работ</a>
+  </div>
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/dogovors}">Договоры</a>
+  </div>
+  <div class="p-2">
+    <a class="h3" th:href="@{/library/profWorkDocs}">Профилактическая и оперативная работа</a>
+  </div>
+</div>
+</body>
+</html>
