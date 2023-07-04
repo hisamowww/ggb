@@ -83,6 +83,31 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+						<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.3.0</version>
+				<executions>
+					<execution>
+						<!--https://stackoverflow.com/questions/43626806/-->
+						<!--Id is important!! Default shade phase is
+                            provided by spring boot starter it seems-->
+						<id>shade-my-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>com.example.ggb.GgbApplication</mainClass>
+								</transformer>
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
