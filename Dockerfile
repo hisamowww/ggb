@@ -1,11 +1,8 @@
-FROM ubuntu:latest AS build
-RUN apt-get update
-RUN apt-get install openjdk-17-jdk -y
+FROM maven:3.8.5-openjdk-17 AS build
 COPY . .
-RUN ./mvnw bootJar --no-daemon
+RUN mvn clean package -DskipTests
 
-FROM openjdk:17-jdk-slim
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /target/ggb-0.0.1-SNAPSHOT.jar ggb.jar
 EXPOSE 8080
-COPY --from=build /build/libs/ggb-0.0.1-SNAPSHOT.jar ggb.jar
-
 ENTRYPOINT ["java", "jar", "ggb.jar"]
